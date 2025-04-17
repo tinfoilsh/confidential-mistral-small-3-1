@@ -1,0 +1,23 @@
+cvm-version: 0.0.23
+ovmf-version: 0.0.2
+cpus: 16
+memory: 65536
+
+models:
+  - name: "mistral-small-3-1-24b"
+    repo: "mistralai/Mistral-Small-3.1-24B-Instruct-2503@4b8dd8aae705887db5295fcbff4aedbb92d682eb"
+    mpk: "23cd0af7cb8f25d98be62011728497ffddcbefca748fe273c36bb823fd7bf95f_96077783040_e60a5d74-a8de-56df-a0b3-00f55e7a0d47"
+vllm-args: --tokenizer_mode mistral --config_format mistral --load_format mistral --tool-call-parser mistral --enable-auto-tool-choice --limit_mm_per_prompt image=10
+
+shim:
+  domains:
+    - mistral-s-3-1-24b-p.model.tinfoil.sh
+  listen-port: 443
+  upstream-port: 8080
+  control-plane: https://api.tinfoil.sh
+  paths:
+    - /v1/chat/completions
+    - /metrics
+  origins:
+    - https://tinfoil.sh
+    - https://chat.tinfoil.sh
