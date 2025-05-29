@@ -7,7 +7,7 @@ models:
   - name: "mistral-small-3-1-24b"
     repo: "mistralai/Mistral-Small-3.1-24B-Instruct-2503@4b8dd8aae705887db5295fcbff4aedbb92d682eb"
     mpk: "23cd0af7cb8f25d98be62011728497ffddcbefca748fe273c36bb823fd7bf95f_96077783040_e60a5d74-a8de-56df-a0b3-00f55e7a0d47"
-vllm-args: --tool-call-parser mistral --enable-auto-tool-choice --chat-template /etc/tinfoil/templates/tool_chat_template_mistral3.jinja --limit_mm_per_prompt image=10
+vllm-args: --tool-call-parser mistral --enable-auto-tool-choice --chat-template /etc/tinfoil/templates/tool_chat_template_mistral3.jinja --gpu-memory-utilization 0.95 --limit_mm_per_prompt image=10
 
 shim:
   domains:
